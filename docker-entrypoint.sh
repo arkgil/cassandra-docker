@@ -37,9 +37,9 @@ if [ "$1" = 'cassandra' ]; then
 	fi
 	: ${CASSANDRA_BROADCAST_RPC_ADDRESS:=$CASSANDRA_BROADCAST_ADDRESS}
 
-  if [ ! -z "${CASSANDRA_SEEDS+x}" ]; then
-	  sed -ri 's/(- seeds:).*/\1 "'"$CASSANDRA_SEEDS"'"/' "$CONFIG_TEMPLATE"
-  fi
+	: ${CASSANDRA_SEEDS:="$CASSANDRA_BROADCAST_ADDRESS"}
+
+	sed -ri 's/(- seeds:).*/\1 "'"$CASSANDRA_SEEDS"'"/' "$CONFIG_TEMPLATE"
 
 	for yaml in \
 		broadcast_address \

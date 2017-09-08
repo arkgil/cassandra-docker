@@ -23,3 +23,8 @@ docker run -dt -v /file/to/dir/with/config/file:/var/lib/cassandra.conf <image_n
 If the base config file can't be found, container will pick up the default one
 (`cassandra.yaml` at the root of this repository).
 
+**IMPORTANT NOTE**
+
+Setting `seed_provider.parameters.sees` in `cassandra.yml` gives no effect -
+list of seeds must be provided with `CASSANDRA_SEEDS` environment variable,
+otherwise it defaults to IP address of the container.
